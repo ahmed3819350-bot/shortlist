@@ -16,9 +16,9 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { Array.prototype.forEach.call(hero, function (el) { el.classList.add('in'); }); }); });
 
     // Everything below: as it comes into view.
-    mark(all('section .label, section h2, section .intro, .download .label, .download h2, .download .cta, .download .note, .promise, section > .shot'), 0);
-    Array.prototype.forEach.call(all('.step'), function (s) { mark(s.children, 120); });
-    Array.prototype.forEach.call(all('.features'), function (f) { mark(f.children, 100); });
+    mark(all('.preview .frame, .preview .caption, .how h2, .privacy h2, .privacy .paras, .download > :not(.reqs)'), 0);
+    mark(all('.step'), 120);
+    mark(all('.reqs > div'), 80);
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
