@@ -6,6 +6,8 @@ Shortlist tailors your CV and writes a cover letter for each job you apply to. I
 
 ## Download
 
+**Website:** [ahmed3819350-bot.github.io/shortlist](https://ahmed3819350-bot.github.io/shortlist/)
+
 **[Download Shortlist for Windows](https://github.com/ahmed3819350-bot/shortlist/releases/latest)** (Windows 10 or 11, 64-bit, about 150 MB)
 
 Everything it needs, including the LaTeX engine that typesets the PDFs, is inside the installer.

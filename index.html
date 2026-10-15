@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="description" content="Shortlist tailors your CV and writes a cover letter for each job you apply to, built from the CV you already have. Free for Windows and fully offline." />
+  <title>Shortlist: tailored CVs and cover letters for Windows</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231D5C63'/%3E%3Crect x='22' y='28' width='56' height='11' rx='1' fill='%23fff'/%3E%3Crect x='22' y='44.5' width='40' height='11' rx='1' fill='%23fff'/%3E%3Crect x='22' y='61' width='22' height='11' rx='1' fill='%23fff'/%3E%3C/svg%3E" />
+  <script src="shortlist-theme.js"></script>
+  <script src="shortlist-motion.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F3F0E8; --surface: #FBFAF6; --surface2: #ECE8DE; --line: #D6D0C3;
+      --text: #1B1A17; --muted: #5C574D; --accent: #1D5C63; --accent-h: #174A50; --accentsoft: #DDEBEC; --onaccent: #FFFFFF;
+      --head: 'Newsreader', Georgia, serif; --ui: 'Public Sans', system-ui, sans-serif;
+      --gutter: clamp(20px, 3.2vw, 44px);
+    }
+    :root[data-theme="dark"] {
+      --bg: #1A1917; --surface: #22211E; --surface2: #2C2A26; --line: #3D3A34;
+      --text: #EDE9E1; --muted: #ADA699; --accent: #7DBDC2; --accent-h: #95CBCF; --accentsoft: #203436; --onaccent: #0E2224;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--ui); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background-color .2s, color .2s; }
+    a { color: var(--accent); }
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* Header: full-width bar with a rule underneath */
+    header.top { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); transition: background-color .2s; }
+    section[id], #download { scroll-margin-top: 96px; }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: var(--head); font-size: 26px; font-weight: 500; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+    .brand svg { width: 32px; height: 32px; }
+    .top nav { display: flex; align-items: center; gap: 28px; }
+    .top nav a.link { font-size: 15px; color: var(--muted); text-decoration: none; }
+    .top nav a.link:hover { color: var(--text); }
+
+    .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 4px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--text); background: var(--surface); transition: background .12s, border-color .12s; }
+    .btn:hover { background: var(--surface2); }
+    .btn.outline { height: 40px; padding: 0 16px; font-size: 14px; }
+    .btn.primary { height: 54px; padding: 0 26px; font-size: 18px; background: var(--accent); border-color: var(--accent); color: var(--onaccent); }
+    .btn.primary:hover { background: var(--accent-h); border-color: var(--accent-h); }
+    .btn svg { width: 20px; height: 20px; flex: none; }
+
+    /* Theme switch: the app's sun/moon pill */
+    .theme-switch { position: relative; display: flex; width: 60px; height: 32px; padding: 2px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface2); cursor: pointer; }
+    .theme-switch .thumb { position: absolute; top: 2px; left: 2px; width: 28px; height: 26px; border-radius: 999px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); transition: transform .2s ease; }
+    :root[data-theme="dark"] .theme-switch .thumb { transform: translateX(26px); }
+    .theme-switch .opt { position: relative; flex: 1; display: grid; place-items: center; color: var(--muted); }
+    :root[data-theme="light"] .theme-switch .sun { color: #85590A; }
+    :root[data-theme="dark"] .theme-switch .moon { color: var(--text); }
+    .theme-switch svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .theme-switch:focus-visible, .btn:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Hero: left-aligned, large serif headline */
+    .hero { padding: clamp(56px, 9vw, 120px) 0 0; }
+    .eyebrow { font-family: var(--head); font-style: italic; font-size: 19px; color: var(--muted); }
+    .hero h1 { font-family: var(--head); font-weight: 500; font-size: clamp(42px, 5.9vw, 82px); line-height: 1.04; letter-spacing: -0.022em; max-width: 760px; margin-top: 22px; }
+    .hero .lead { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; color: var(--text); opacity: .86; max-width: 740px; margin-top: 30px; }
+    .cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 36px; }
+    .fine { font-size: 15px; color: var(--muted); }
+
+    .shot { margin-top: clamp(56px, 7vw, 88px); border-radius: 8px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 32px 64px -36px rgba(27, 26, 23, .45); background: var(--surface); }
+    .shot img { display: block; width: 100%; height: auto; }
+    .shot .dark-only { display: none; }
+    :root[data-theme="dark"] .shot .dark-only { display: block; }
+    :root[data-theme="dark"] .shot .light-only { display: none; }
+
+    section { padding-top: clamp(80px, 10vw, 128px); }
+    .label { font-family: var(--head); font-style: italic; font-size: 19px; color: var(--muted); }
+    h2 { font-family: var(--head); font-weight: 500; font-size: clamp(32px, 3.8vw, 52px); line-height: 1.08; letter-spacing: -0.018em; margin-top: 10px; max-width: 880px; }
+    .intro { font-size: 18px; color: var(--muted); max-width: 700px; margin-top: 18px; }
+
+    .steps { display: grid; gap: clamp(56px, 7vw, 96px); margin-top: 56px; }
+    .step { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
+    .num { font-family: var(--head); font-size: 15px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; width: 32px; height: 32px; display: grid; place-items: center; margin-bottom: 16px; }
+    .step h3 { font-family: var(--head); font-weight: 500; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; letter-spacing: -0.01em; }
+    .step p { color: var(--muted); font-size: 17px; margin-top: 12px; }
+    .step .shot { margin-top: 0; }
+
+    .rule { border-top: 1px solid var(--line); margin-top: 48px; }
+    .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .features > div { padding: 28px 28px 28px 0; }
+    .features > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+    .features h3 { font-family: var(--head); font-weight: 500; font-size: 22px; }
+    .features p { color: var(--muted); font-size: 16px; margin-top: 8px; }
+
+    .promise { margin-top: 56px; font-family: var(--head); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.3; letter-spacing: -0.01em; max-width: 1000px; padding-left: 24px; border-left: 3px solid var(--accent); }
+
+    .download { padding: clamp(88px, 11vw, 140px) 0 0; }
+    .note { max-width: 680px; margin-top: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px 22px; font-size: 15px; color: var(--muted); }
+    .note b { color: var(--text); }
+
+    footer { margin-top: clamp(88px, 10vw, 128px); border-top: 1px solid var(--line); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 28px; padding-bottom: 40px; font-size: 14px; color: var(--muted); }
+    footer a { color: var(--muted); }
+
+    @media (max-width: 860px) {
+      .step { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .features > div, .features > div + div { padding: 22px 0; border-left: 0; border-top: 1px solid var(--line); }
+      .features > div:first-child { border-top: 0; }
+      .top nav a.link { display: none; }
+      .top nav { gap: 14px; }
+    }
+    /* Scroll reveal: added by shortlist-motion.js, so without JavaScript nothing is hidden */
+    .motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1); transition-delay: var(--d, 0ms); }
+    .motion .shot.reveal { transform: translateY(28px) scale(.985); }
+    .motion .reveal.in { opacity: 1; transform: none; }
+    /* Back to top: a small circle on the right, shown once the visitor has scrolled down */
+    .to-top { position: fixed; right: clamp(16px, 2.4vw, 32px); bottom: clamp(16px, 2.4vw, 32px); z-index: 20; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; box-shadow: 0 6px 18px -8px rgba(27, 26, 23, .35); opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s ease, transform .25s ease, background-color .12s; }
+    .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    .to-top:hover { background: var(--surface2); }
+    .to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .to-top svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } body, .theme-switch .thumb { transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="18" fill="#1D5C63"/><rect x="22" y="28" width="56" height="11" rx="1" fill="#fff"/><rect x="22" y="44.5" width="40" height="11" rx="1" fill="#fff"/><rect x="22" y="61" width="22" height="11" rx="1" fill="#fff"/></svg>
+        Shortlist
+      </a>
+      <nav>
+        <a class="link" href="#how">How it works</a>
+        <a class="link" href="#privacy">Privacy</a>
+        <button id="theme-toggle" class="theme-switch" role="switch" aria-checked="false" aria-label="Switch to dark mode" title="Light or dark">
+          <span class="thumb"></span>
+          <span class="opt sun"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.2"/><path d="M10 2.5v1.8M10 15.7v1.8M2.5 10h1.8M15.7 10h1.8M4.7 4.7l1.3 1.3M14 14l1.3 1.3M4.7 15.3 6 14M14 6l1.3-1.3"/></svg></span>
+          <span class="opt moon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 12.2A6.6 6.6 0 0 1 7.8 3.5a6.6 6.6 0 1 0 8.7 8.7z"/></svg></span>
+        </button>
+        <a class="btn outline" href="#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <p class="eyebrow">For graduates and early-career engineers</p>
+      <h1>A tailored CV and cover letter for every job, built from the one you already have.</h1>
+      <p class="lead">Import your master CV once. Paste a job posting. Shortlist picks your most relevant experience, shows you why, and saves both documents as PDFs.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/ahmed3819350-bot/shortlist/releases/latest" rel="noopener">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 16.5h12"/></svg>
+          Download for Windows
+        </a>
+        <span class="fine">Windows 10 and 11 · 64-bit · Works offline</span>
+      </div>
+      <div class="shot">
+        <img class="light-only" src="screens/shortlist-review.webp" width="1600" height="1000" alt="Shortlist's review screen: a tailored CV and cover letter side by side, with notes on bullets that need a figure or a result." />
+        <img class="dark-only" src="screens/shortlist-review-dark.webp" width="1600" height="1000" loading="lazy" alt="" />
+      </div>
+    </div>
+
+    <section id="how">
+      <p class="label">How it works</p>
+      <h2>Three steps from job posting to finished application.</h2>
+      <div class="steps">
+        <div class="step">
+          <div>
+            <div class="num">1</div>
+            <h3>Import your master CV once</h3>
+            <p>Your master CV is the long version with everything you have done. Import it as a PDF, a Word file or LaTeX. Shortlist reads your roles, bullets, modules and skills, and flags anything worth checking.</p>
+          </div>
+          <div class="shot"><img src="screens/shortlist-profile.webp" width="1600" height="1000" loading="lazy" alt="The profile screen after importing a master CV, with contact details and settings." /></div>
+        </div>
+        <div class="step">
+          <div>
+            <div class="num">2</div>
+            <h3>Paste the job posting</h3>
+            <p>Shortlist reads the posting the way a recruiter would. It flags the visa clause, the degree class and the locations, and shows which of the skills asked for your CV proves, only lists, or is missing.</p>
+          </div>
+          <div class="shot"><img src="screens/shortlist-analysis.webp" width="1600" height="1000" loading="lazy" alt="A job posting pasted in and analysed, with the degree check and the role and company filled in." /></div>
+        </div>
+        <div class="step">
+          <div>
+            <div class="num">3</div>
+            <h3>Review, edit, save</h3>
+            <p>Both documents appear side by side as real PDFs. Click any bullet to reword it or swap in another from the same role, ranked by how well it fits the job. Approve each one and save: every job gets its own folder.</p>
+          </div>
+          <div class="shot"><img src="screens/shortlist-edit.webp" width="1600" height="1000" loading="lazy" alt="A CV bullet open for editing, with its relevance score and other bullets from the same role." /></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="label">The 10-second check</p>
+      <h2>Recruiters decide in seconds. Shortlist checks what they look for.</h2>
+      <p class="intro">Every CV is scored against six questions: is the target clear, does it use the job's own language, does it show outcomes and scale, is there progression, and is its value obvious at a glance. Each answer comes with the reason.</p>
+      <div class="shot"><img src="screens/shortlist-why.webp" width="1600" height="1000" loading="lazy" alt="The 10-second recruiter check scoring a CV 6 out of 6, above the job's requirements and the chosen bullets." /></div>
+      <div class="rule"></div>
+      <div class="features">
+        <div><h3>UK or US spelling</h3><p>One click switches every word, in both documents.</p></div>
+        <div><h3>Honest cover letters</h3><p>Built from your own bullets. Job numbers and reference IDs never appear in them.</p></div>
+        <div><h3>Pick up where you left off</h3><p>Reopen any saved application to edit it, then save it again in place.</p></div>
+      </div>
+      <p class="promise">Shortlist never adds a skill, a module or a piece of experience you have not written. It chooses and orders what is already yours, and tells you what the job asks for that your CV does not show.</p>
+    </section>
+
+    <section id="privacy">
+      <p class="label">Privacy</p>
+      <h2>Your CV stays on your computer.</h2>
+      <div class="rule"></div>
+      <div class="features">
+        <div><h3>Fully offline</h3><p>No account, no upload, no network requests. The engine that typesets your PDFs is built in.</p></div>
+        <div><h3>No AI service</h3><p>Shortlist uses fixed, readable rules to match your CV to a posting. Nothing you write is sent anywhere to be processed.</p></div>
+        <div><h3>Locked down</h3><p>The app runs sandboxed and cannot reach the web. Its only source is your own master CV.</p></div>
+      </div>
+    </section>
+
+    <div class="download" id="download">
+      <p class="label">Download</p>
+      <h2>Free for Windows.</h2>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/ahmed3819350-bot/shortlist/releases/latest" rel="noopener">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 16.5h12"/></svg>
+          Download Shortlist 0.1.1
+        </a>
+        <span class="fine">Windows 10 and 11 · 64-bit · 137 MB · Everything it needs is included</span>
+      </div>
+      <div class="note"><b>"Windows protected your PC"?</b> The installer is not code-signed yet, so Windows may show this the first time. Click <b>More info</b>, then <b>Run anyway</b>. Each release lists a checksum you can use to confirm your download is genuine.</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Shortlist. All rights reserved.</span>
+      <span>Made by <a href="https://ahmad-adil.com" rel="noopener">Ahmad Adil</a> · <a href="https://github.com/ahmed3819350-bot/shortlist/blob/main/SECURITY.md" rel="noopener">Security</a></span>
+    </div>
+  </footer>
+
+  <button id="to-top" class="to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15.5V4.5M5 9.5l5-5 5 5"/></svg>
+  </button>
+</body>
+</html>
