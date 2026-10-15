@@ -2,13 +2,13 @@
 
 <h1 align="center">Shortlist</h1>
 
-Shortlist tailors your CV and writes a cover letter for each job you apply to. It runs on your own Windows PC and works offline. Your CV never leaves your computer, and no AI service is involved.
+Shortlist tailors your CV and writes a cover letter for each job you apply to, for engineers in every field, from civil and electrical to software and chemical. It runs on your own Windows PC and works offline. Your CV never leaves your computer, and no AI service is involved.
 
 ## Download
 
 **Website:** [ahmed3819350-bot.github.io/shortlist](https://ahmed3819350-bot.github.io/shortlist/)
 
-**[Download Shortlist for Windows](https://github.com/ahmed3819350-bot/shortlist/releases/latest)** (Windows 10 or 11, 64-bit, about 150 MB)
+**[Download Shortlist for Windows](https://github.com/ahmed3819350-bot/shortlist/releases/latest)** (Windows 10 or 11, 64-bit, 137 MB)
 
 Everything it needs, including the LaTeX engine that typesets the PDFs, is inside the installer.
 
