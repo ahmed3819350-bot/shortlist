@@ -1,7 +1,7 @@
 // Download settings for the Shortlist website: change these values for each release.
 window.SHORTLIST_SITE = {
-  downloadUrl: 'https://github.com/ahmed3819350-bot/shortlist/releases/latest/download/Shortlist-Setup-0.2.0.exe',
-  version: '0.2.0',
+  downloadUrl: 'https://github.com/ahmed3819350-bot/shortlist/releases/latest/download/Shortlist-Setup-0.2.1.exe',
+  version: '0.2.1',
   size: '129 MB'
 };
 document.addEventListener('DOMContentLoaded', function () {
