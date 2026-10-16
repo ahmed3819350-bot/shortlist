@@ -44,6 +44,7 @@ Shortlist never adds a skill, module or piece of experience you have not written
 
 **After you save**
 - Applications: every saved application with its fit, status and job posting
+- The job posting is kept with each application. Postings are often taken down once applications close, and the copy you applied to is easy to lose. With Shortlist you can reread exactly what the employer asked for before an interview, copy it, and see which of its requirements your CV proves.
 - An interview prep sheet for each application: what you are likely to be asked, and the example on your CV that answers it
 - Reopen any saved application to edit and save it again
 
