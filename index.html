@@ -11,6 +11,7 @@
   <script src="shortlist-theme.js"></script>
   <script src="shortlist-motion.js"></script>
   <script src="site-config.js"></script>
+  <script src="shortlist-slides.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet" />
@@ -85,7 +86,17 @@
     .controls { position: absolute; top: 0; right: 0; height: calc(100cqw * 32 / 1440); display: flex; color: var(--muted); }
     .controls span { width: calc(100cqw * 46 / 1440); display: grid; place-items: center; }
     .controls svg { width: calc(100cqw * 10 / 1440); height: auto; fill: none; stroke: currentColor; stroke-width: 1; }
-    .caption { margin-top: 14px; font-size: 14px; color: var(--muted); }
+    .caption { margin-top: 10px; font-size: 14px; color: var(--muted); min-height: 1.55em; }
+    /* Slides: four screens cross-fade in the frame; the tabs underneath choose one */
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+    .slide.on { opacity: 1; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .tabs button { position: relative; height: 32px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font: 600 13px var(--ui); cursor: pointer; overflow: hidden; transition: background-color .12s, color .12s; }
+    .tabs button:hover { background: var(--surface2); color: var(--text); }
+    .tabs button[aria-selected="true"] { color: var(--text); border-color: var(--text); }
+    .tabs button[aria-selected="true"]::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--accent); transform-origin: left; animation: tab-run var(--slide-ms, 6000ms) linear forwards; }
+    .tabs.paused button::after { animation-play-state: paused; }
+    @keyframes tab-run { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
     /* 4. How it works */
     h2 { font-family: var(--head); font-weight: 500; font-size: clamp(30px, 3.6vw, 42px); line-height: 1.15; }
@@ -112,6 +123,16 @@
     .reqs b { font-size: 16px; font-weight: 400; }
     .download .note { max-width: 640px; }
 
+    /* FAQ */
+    .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start; padding: 96px 32px 0; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary { list-style: none; display: flex; align-items: center; gap: 16px; padding: 18px 0; cursor: pointer; font-family: var(--head); font-size: 20px; font-weight: 500; line-height: 1.3; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: ''; flex: none; margin-left: auto; width: 9px; height: 9px; border-right: 1.6px solid var(--muted); border-bottom: 1.6px solid var(--muted); transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s ease; }
+    .faq details[open] summary::after { transform: rotate(225deg) translate(-2px, -2px); }
+    .faq details p { margin: -4px 0 20px; max-width: 640px; color: var(--body); }
+
     /* 7. Footer */
     footer { border-top: 1px solid var(--line); }
     footer .wrap { display: flex; align-items: center; gap: 12px; padding: 28px 32px; font-size: 13px; color: var(--muted); }
@@ -131,7 +152,7 @@
     @media (max-width: 720px) {
       header nav a.link { display: none; }
       header nav { gap: 12px; }
-      header.top .wrap, .hero, .preview, .how, .privacy, .download, footer .wrap { padding-left: 20px; padding-right: 20px; }
+      header.top .wrap, .hero, .preview, .how, .privacy, .faq, .download, footer .wrap { padding-left: 20px; padding-right: 20px; }
       .hero { padding-top: 56px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } body, .theme-switch .thumb, .to-top { transition: none; } }
@@ -172,16 +193,36 @@
     </div>
 
     <div class="wrap preview">
-      <div class="frame">
-        <img class="light-only" src="screens/site-preview.webp" width="2160" height="1350" alt="Shortlist's Review screen: a tailored two-page CV and a one-page cover letter side by side, with the CV approved." />
-        <img class="dark-only" src="screens/site-preview-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+      <div class="frame" id="slides" aria-roledescription="carousel" aria-label="Shortlist screens">
+        <div class="slide on" data-caption="The Review screen. Click any line of the CV to edit it, approve each document, then save.">
+          <img class="light-only" src="screens/site-preview.webp" width="2160" height="1350" alt="Shortlist's Review screen: a tailored two-page CV and a one-page cover letter side by side, with the CV approved." />
+          <img class="dark-only" src="screens/site-preview-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+        </div>
+        <div class="slide" data-caption="Before you build anything, Shortlist shows how well you fit the job and which skills you can prove.">
+          <img class="light-only" src="screens/site-fit.webp" width="2160" height="1350" loading="lazy" alt="A job posting analysed: a Strong fit verdict, the degree check and a gap report of proven, listed and missing skills." />
+          <img class="dark-only" src="screens/site-fit-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+        </div>
+        <div class="slide" data-caption="Every application you save, with its fit and where it stands: saved, applied, interview, offer or rejected.">
+          <img class="light-only" src="screens/site-apps.webp" width="2160" height="1350" loading="lazy" alt="The Applications screen listing five saved applications with their fit and status." />
+          <img class="dark-only" src="screens/site-apps-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+        </div>
+        <div class="slide" data-caption="CV health scores your master CV, so every application starts from stronger material.">
+          <img class="light-only" src="screens/site-health.webp" width="2160" height="1350" loading="lazy" alt="The CV health card scoring a master CV 85 out of 100, with checks for figures, results, depth and skills." />
+          <img class="dark-only" src="screens/site-health-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+        </div>
         <div class="controls" aria-hidden="true">
           <span><svg viewBox="0 0 10 10"><path d="M0 5h10"/></svg></span>
           <span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9"/></svg></span>
           <span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0 0 10"/></svg></span>
         </div>
       </div>
-      <p class="caption">The Review screen. Click any line of the CV to edit it, approve each document, then save.</p>
+      <div class="tabs" role="tablist" aria-label="Choose a screen">
+        <button role="tab" aria-selected="true">Review</button>
+        <button role="tab" aria-selected="false">Fit</button>
+        <button role="tab" aria-selected="false">Applications</button>
+        <button role="tab" aria-selected="false">CV health</button>
+      </div>
+      <p class="caption" id="slide-caption" aria-live="polite">The Review screen. Click any line of the CV to edit it, approve each document, then save.</p>
     </div>
 
     <section class="wrap how" id="how">
@@ -203,6 +244,19 @@
       </section>
     </div>
 
+    <section class="wrap faq" id="faq">
+      <h2>Questions</h2>
+      <div class="faq-list">
+        <details><summary>Do I need to know LaTeX?</summary><p>No. Import your CV as a PDF or a Word file and Shortlist handles the rest. It also saves each document's LaTeX source, in case you ever want to edit it by hand.</p></details>
+        <details><summary>Does Shortlist use AI?</summary><p>No. It matches your CV to a posting with fixed, readable rules, and it explains every choice it makes. Nothing you write is sent anywhere to be processed.</p></details>
+        <details><summary>Will it add skills I don't have?</summary><p>Never. It only chooses and orders what is already in your master CV. When a job asks for something your CV does not show, Shortlist tells you so.</p></details>
+        <details><summary>My engineering field is not listed. Will it work?</summary><p>Yes. Shortlist reads postings from every engineering field. The fields you pick from at the start only set the examples and the title under your name.</p></details>
+        <details><summary>Can I get Word files?</summary><p>Yes. Turn on "Also save a Word copy" in Settings, and every application saves a .docx of the CV and cover letter next to the PDFs.</p></details>
+        <details><summary>Does it ever go online?</summary><p>Only if you turn on update checks in Settings. It then asks GitHub for the latest version number when it opens, and nothing else.</p></details>
+        <details><summary>Is there a Mac version?</summary><p>Not yet. Shortlist runs on Windows 10 and 11.</p></details>
+      </div>
+    </section>
+
     <section class="wrap download" id="download">
       <p class="eyebrow">Download</p>
       <h2>Get Shortlist for Windows</h2>
@@ -211,7 +265,7 @@
           <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9.5 M6 8.5l4 4 4-4 M3 13v4h14v-4"/></svg>
           Download Shortlist-Setup.exe
         </a>
-        <span class="version" data-version>Version 0.1.2</span>
+        <span class="version" data-version>Version 0.2.0 · 128 MB</span>
       </div>
       <div class="reqs">
         <div><span>System</span><b>Windows 10 or 11, 64-bit</b></div>

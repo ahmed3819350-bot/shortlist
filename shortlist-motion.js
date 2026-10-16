@@ -16,7 +16,7 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { Array.prototype.forEach.call(hero, function (el) { el.classList.add('in'); }); }); });
 
     // Everything below: as it comes into view.
-    mark(all('.preview .frame, .preview .caption, .how h2, .privacy h2, .privacy .paras, .download > :not(.reqs)'), 0);
+    mark(all('.preview .frame, .preview .caption, .how h2, .privacy h2, .privacy .paras, .faq h2, .faq-list,.download > :not(.reqs)'), 0);
     mark(all('.step'), 120);
     mark(all('.reqs > div'), 80);
 
