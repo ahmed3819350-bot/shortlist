@@ -2,7 +2,7 @@
 window.SHORTLIST_SITE = {
   downloadUrl: 'https://github.com/ahmed3819350-bot/shortlist/releases/latest/download/Shortlist-Setup-0.2.0.exe',
   version: '0.2.0',
-  size: '128 MB'
+  size: '129 MB'
 };
 document.addEventListener('DOMContentLoaded', function () {
   var c = window.SHORTLIST_SITE;
