@@ -27,6 +27,18 @@ The installer is not code-signed yet, so Windows SmartScreen may show this warni
 
 Shortlist never adds a skill, module or piece of experience you have not written. It chooses and orders what is already in your master CV, and tells you what the posting asks for that your CV does not show.
 
+## Built for applicant-tracking systems
+
+Many employers run every CV through an applicant-tracking system (ATS) before a person reads it. Shortlist's layouts are ATS-compliant by design:
+
+- Real text PDFs, with no images, text boxes or multi-column layouts that scramble the reading order
+- Standard section headings (Education, Experience, Projects, Skills) in one clear reading order
+- No hyphenation, so a keyword is never split across two lines
+- Plain characters: the dashes and curly quotes some systems misread are replaced
+- The posting's own terms for the skills your CV proves
+
+**100% parse rate in our tests.** We built 18 CVs, in both layouts, from nine test CVs and job postings across six engineering fields. A standard PDF text extractor read back all 281 printed lines in full and in the right order, and a CV parser recovered every bullet (171 of 171), name, email and education entry from all 18. Each employer's system is different, so results elsewhere can vary.
+
 ## Features
 
 **Before you apply**
