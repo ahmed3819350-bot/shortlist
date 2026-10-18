@@ -35,7 +35,7 @@
     body { background: var(--bg); color: var(--text); font-family: var(--ui); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; transition: background-color .2s, color .2s; }
     /* The drafting grid from the banner and promo video: fixed behind the page, softer in the middle of the screen. */
     body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url("assets/grid.svg") 0 0 / 135px 135px repeat;
-      -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(0,0,0,.45), #000 100%); mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(0,0,0,.45), #000 100%); }
+      -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(0,0,0,.3), #000 100%); mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(0,0,0,.3), #000 100%); }
     :root[data-theme="dark"] body::before { background-image: url("assets/grid-dark.svg"); }
     ::selection { background: var(--accentsoft); }
     a { color: var(--accent); }
@@ -84,7 +84,7 @@
 
     /* Promo video: 1920 x 1080, loops muted under the headline, with a pause button */
     .promo { padding: 0 32px 72px; }
-    .promo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface2); box-shadow: 0 24px 60px -24px rgba(27, 26, 23, 0.28); }
+    .promo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface2); box-shadow: 0 24px 60px -24px rgba(27, 26, 23, 0.28); }
     .promo-frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
     .promo-toggle { position: absolute; right: 14px; bottom: 14px; width: 36px; height: 36px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; opacity: .82; transition: opacity .15s; }
     .promo-toggle:hover, .promo-toggle:focus-visible { opacity: 1; }
@@ -93,7 +93,7 @@
 
     /* 3. App preview: a 1440 x 900 screenshot of the Review screen in a window frame */
     .preview { padding: 0 32px 96px; }
-    .frame { position: relative; width: 100%; aspect-ratio: 1440 / 900; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--pagebg); box-shadow: 0 24px 60px -24px rgba(27, 26, 23, 0.28); container-type: inline-size; }
+    .frame { position: relative; width: 100%; aspect-ratio: 1440 / 900; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--pagebg); box-shadow: 0 24px 60px -24px rgba(27, 26, 23, 0.28); container-type: inline-size; }
     .frame img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .frame .dark-only { display: none; }
     :root[data-theme="dark"] .frame .dark-only { display: block; }
