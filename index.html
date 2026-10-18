@@ -136,7 +136,10 @@
     .download .row { justify-content: center; flex-wrap: wrap; }
 
     /* FAQ */
-    .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start; padding: 96px 32px 0; }
+    .faq { display: flex; flex-direction: column; gap: 40px; padding: 96px 32px 0; }
+    .faq h2 { text-align: center; }
+    /* Two stacks of four, so opening a question only moves its own column */
+    .faq-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; align-items: start; }
     .faq-list { border-top: 1px solid var(--line); }
     .faq details { border-bottom: 1px solid var(--line); }
     .faq summary { list-style: none; display: flex; align-items: center; gap: 16px; padding: 18px 0; cursor: pointer; font-family: var(--head); font-size: 20px; font-weight: 500; line-height: 1.3; }
@@ -165,6 +168,8 @@
       header nav a.link { display: none; }
       header nav { gap: 12px; }
       header.top .wrap, .hero, .promo, .preview, .how, .privacy, .faq, .download, footer .wrap { padding-left: 20px; padding-right: 20px; }
+      .faq-cols { grid-template-columns: minmax(0, 1fr); }
+      .faq-cols .faq-list + .faq-list { border-top: 0; }
       .hero { padding-top: 56px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } body, .theme-switch .thumb, .to-top { transition: none; } }
@@ -264,16 +269,19 @@
 
     <section class="wrap faq" id="faq">
       <h2>Questions</h2>
+      <div class="faq-cols">
       <div class="faq-list">
         <details><summary>Do I need to know LaTeX?</summary><p>No. Import your CV as a PDF or a Word file and Shortlist handles the rest. It also saves each document's LaTeX source, in case you ever want to edit it by hand.</p></details>
         <details><summary>Does Shortlist use AI?</summary><p>No. It matches your CV to a posting with fixed, readable rules, and it explains every choice it makes. Nothing you write is sent anywhere to be processed.</p></details>
         <details><summary>I don't have a master CV. Can I still use it?</summary><p>Yes. Shortlist gives you a Word template with every section it reads. Fill in as much as you can, import it, and Shortlist picks the best parts for each job.</p></details>
         <details><summary>Why does Shortlist keep the job posting?</summary><p>Postings are often taken down once applications close, and the copy you applied to is easy to lose. Shortlist keeps it with each application, so when an interview comes up you can reread exactly what the employer asked for, alongside the CV and letter you sent and an interview prep sheet.</p></details>
+      </div>
+      <div class="faq-list">
         <details><summary>Will it add skills I don't have?</summary><p>Never. It only chooses and orders what is already in your master CV. When a job asks for something your CV does not show, Shortlist tells you so.</p></details>
         <details><summary>My engineering field is not listed. Will it work?</summary><p>Yes. Shortlist reads postings from every engineering field. The fields you pick from at the start only set the examples and the title under your name.</p></details>
         <details><summary>Can I get Word files?</summary><p>Yes. Turn on "Also save a Word copy" in Settings, and every application saves a .docx of the CV and cover letter next to the PDFs.</p></details>
-        <details><summary>Does it ever go online?</summary><p>Only if you turn on update checks in Settings. It then asks GitHub for the latest version number when it opens, and nothing else.</p></details>
         <details><summary>Is there a Mac version?</summary><p>Not yet. Shortlist runs on Windows 10 and 11.</p></details>
+      </div>
       </div>
     </section>
 
