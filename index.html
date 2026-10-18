@@ -129,10 +129,11 @@
     .privacy .paras { display: flex; flex-direction: column; gap: 14px; color: var(--body); }
 
     /* 6. Download */
-    .download { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; padding: 96px 32px; }
+    .download { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; padding: 96px 32px; }
     .download h2 { font-size: clamp(34px, 4.4vw, 52px); line-height: 1.1; }
     .version { font-family: var(--mono); font-size: 13px; color: var(--muted); }
     .download .note { max-width: 640px; }
+    .download .row { justify-content: center; flex-wrap: wrap; }
 
     /* FAQ */
     .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start; padding: 96px 32px 0; }
@@ -277,7 +278,6 @@
     </section>
 
     <section class="wrap download" id="download">
-      <p class="eyebrow">Download</p>
       <h2>Get Shortlist for Windows</h2>
       <div class="row">
         <a class="btn-primary" data-download href="https://github.com/ahmed3819350-bot/shortlist/releases/latest" rel="noopener">
