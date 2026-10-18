@@ -33,6 +33,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: var(--ui); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; transition: background-color .2s, color .2s; }
+    /* The drafting grid from the banner and promo video: fixed behind the page, softer in the middle of the screen. */
+    body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url("assets/grid.svg") 0 0 / 135px 135px repeat;
+      -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(0,0,0,.45), #000 100%); mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, rgba(0,0,0,.45), #000 100%); }
+    :root[data-theme="dark"] body::before { background-image: url("assets/grid-dark.svg"); }
     ::selection { background: var(--accentsoft); }
     a { color: var(--accent); }
     a:hover { color: var(--accent-p); }

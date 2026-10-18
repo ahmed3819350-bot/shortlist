@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="135" height="135" viewBox="0 0 135 135">
+  <!-- Drafting grid, as in the Instagram banner and promo video: 27 px squares, a heavier line every 5, a cross at each heavy intersection. -->
+  <g fill="none" stroke="#1B1A17">
+    <path stroke-opacity="0.035" stroke-width="1" d="M27 0V135 M54 0V135 M81 0V135 M108 0V135 M0 27H135 M0 54H135 M0 81H135 M0 108H135"/>
+    <path stroke-opacity="0.06" stroke-width="1.2" d="M0.6 0V135 M0 0.6H135"/>
+    <path stroke-opacity="0.16" stroke-width="2" d="M0 0V9 M0 126V135 M0 0H9 M126 0H135 M135 0V9 M135 126V135 M0 135H9 M126 135H135"/>
+  </g>
+</svg>
