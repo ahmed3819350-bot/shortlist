@@ -13,6 +13,7 @@
   <script src="site-config.js"></script>
   <script src="shortlist-slides.js"></script>
   <script src="promo-video.js" defer></script>
+  <script src="faq.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet" />
@@ -146,6 +147,11 @@
     .faq summary::-webkit-details-marker { display: none; }
     .faq summary::after { content: ''; flex: none; margin-left: auto; width: 9px; height: 9px; border-right: 1.6px solid var(--muted); border-bottom: 1.6px solid var(--muted); transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s ease; }
     .faq details[open] summary::after { transform: rotate(225deg) translate(-2px, -2px); }
+    /* Glides with the answer (faq.js); turns back as soon as a question starts closing */
+    .faq summary::after { transition: transform .42s cubic-bezier(.22, 1, .36, 1); }
+    .faq details.closing summary::after { transform: rotate(45deg) translate(-2px, -2px); transition-duration: .32s; }
+    .faq summary { transition: color .2s ease; }
+    .faq summary:hover { color: var(--accent); }
     .faq details p { margin: -4px 0 20px; max-width: 640px; color: var(--body); }
 
     /* 7. Footer */
@@ -218,20 +224,20 @@
     <div class="wrap preview">
       <div class="frame" id="slides" aria-roledescription="carousel" aria-label="Shortlist screens">
         <div class="slide on" data-caption="The Review screen. Click any line of the CV to edit it, approve each document, then save.">
-          <img class="light-only" src="screens/site-preview.webp" width="2160" height="1350" alt="Shortlist's Review screen: a tailored two-page CV and a one-page cover letter side by side, with the CV approved." />
-          <img class="dark-only" src="screens/site-preview-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+          <img class="light-only" src="screens/site-preview.webp" width="2880" height="1800" alt="Shortlist's Review screen: a tailored two-page CV and a one-page cover letter side by side, with the CV approved." />
+          <img class="dark-only" src="screens/site-preview-dark.webp" width="2880" height="1800" loading="lazy" alt="" />
         </div>
         <div class="slide" data-caption="Before you build anything, Shortlist shows how well you fit the job and which skills you can prove.">
-          <img class="light-only" src="screens/site-fit.webp" width="2160" height="1350" loading="lazy" alt="A job posting analysed: a Strong fit verdict, the degree check and a gap report of proven, listed and missing skills." />
-          <img class="dark-only" src="screens/site-fit-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+          <img class="light-only" src="screens/site-fit.webp" width="2880" height="1800" loading="lazy" alt="A job posting analysed: a Strong fit verdict, the degree check and a gap report of proven, listed and missing skills." />
+          <img class="dark-only" src="screens/site-fit-dark.webp" width="2880" height="1800" loading="lazy" alt="" />
         </div>
         <div class="slide" data-caption="Every application you save, with its fit and where it stands: saved, applied, interview, offer or rejected.">
-          <img class="light-only" src="screens/site-apps.webp" width="2160" height="1350" loading="lazy" alt="The Applications screen listing five saved applications with their fit and status." />
-          <img class="dark-only" src="screens/site-apps-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+          <img class="light-only" src="screens/site-apps.webp" width="2880" height="1800" loading="lazy" alt="The Applications screen listing five saved applications with their fit and status." />
+          <img class="dark-only" src="screens/site-apps-dark.webp" width="2880" height="1800" loading="lazy" alt="" />
         </div>
         <div class="slide" data-caption="CV health scores your master CV, so every application starts from stronger material.">
-          <img class="light-only" src="screens/site-health.webp" width="2160" height="1350" loading="lazy" alt="The CV health card scoring a master CV 85 out of 100, with checks for figures, results, depth and skills." />
-          <img class="dark-only" src="screens/site-health-dark.webp" width="2160" height="1350" loading="lazy" alt="" />
+          <img class="light-only" src="screens/site-health.webp" width="2880" height="1800" loading="lazy" alt="The CV health card scoring a master CV 85 out of 100, with checks for figures, results, depth and skills." />
+          <img class="dark-only" src="screens/site-health-dark.webp" width="2880" height="1800" loading="lazy" alt="" />
         </div>
         <div class="controls" aria-hidden="true">
           <span><svg viewBox="0 0 10 10"><path d="M0 5h10"/></svg></span>
