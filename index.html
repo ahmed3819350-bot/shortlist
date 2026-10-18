@@ -12,6 +12,7 @@
   <script src="shortlist-motion.js"></script>
   <script src="site-config.js"></script>
   <script src="shortlist-slides.js"></script>
+  <script src="promo-video.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet" />
@@ -75,6 +76,15 @@
     .hero h1 { font-family: var(--head); font-weight: 500; font-size: clamp(40px, 6vw, 72px); line-height: 1.04; letter-spacing: -0.015em; max-width: 900px; text-wrap: balance; }
     .lead { font-size: 18px; color: var(--body); max-width: 620px; }
     .hero .row { margin-top: 8px; }
+
+    /* Promo video: 1920 x 1080, loops muted under the headline, with a pause button */
+    .promo { padding: 0 32px 72px; }
+    .promo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface2); box-shadow: 0 24px 60px -24px rgba(27, 26, 23, 0.28); }
+    .promo-frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .promo-toggle { position: absolute; right: 14px; bottom: 14px; width: 36px; height: 36px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; opacity: .82; transition: opacity .15s; }
+    .promo-toggle:hover, .promo-toggle:focus-visible { opacity: 1; }
+    .promo-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .promo-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
     /* 3. App preview: a 1440 x 900 screenshot of the Review screen in a window frame */
     .preview { padding: 0 32px 96px; }
@@ -152,7 +162,7 @@
     @media (max-width: 720px) {
       header nav a.link { display: none; }
       header nav { gap: 12px; }
-      header.top .wrap, .hero, .preview, .how, .privacy, .faq, .download, footer .wrap { padding-left: 20px; padding-right: 20px; }
+      header.top .wrap, .hero, .promo, .preview, .how, .privacy, .faq, .download, footer .wrap { padding-left: 20px; padding-right: 20px; }
       .hero { padding-top: 56px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } body, .theme-switch .thumb, .to-top { transition: none; } }
@@ -189,6 +199,13 @@
           Download for Windows
         </a>
         <span class="note">Windows 10 and 11 · 64-bit · Works offline</span>
+      </div>
+    </div>
+
+    <div class="wrap promo">
+      <div class="promo-frame">
+        <video id="promo-video" src="assets/shortlist-promo.mp4" width="1920" height="1080" autoplay muted loop playsinline preload="auto" aria-label="A 30-second tour of Shortlist: import your CV, paste a job, see your fit, and get a tailored CV and cover letter."></video>
+        <button class="promo-toggle" id="promo-toggle" type="button" aria-label="Pause the video" title="Pause"></button>
       </div>
     </div>
 
