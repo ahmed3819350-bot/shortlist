@@ -18,7 +18,7 @@ The installer is not code-signed yet, so Windows SmartScreen may show this warni
 
 ## How it works
 
-1. **Import your master CV** once: the long version with everything you have done, as a PDF, a Word file (.docx) or LaTeX (.tex). No master CV yet? Shortlist gives you a Word template with every section to fill in. You can correct anything it imported in the app.
+1. **Import your master CV** once: the long version with everything you have done, as a PDF, a Word file (.docx) or LaTeX (.tex). No master CV yet? Build one in Shortlist, step by step, or fill in its Word template. You can correct anything it imported in the app.
 2. **Paste a job posting.** Shortlist tells you how well you fit (Strong fit, Good fit, A stretch or Long shot), flags the visa clause, the degree asked for and the locations, and shows which of the posting's skills your CV proves, only lists, or is missing.
 3. **Review and save.** Shortlist picks the bullets, modules and skills that best match the job, writes a cover letter, and shows both side by side. Click any part to edit it, approve each document, then save. Each job gets its own folder with the CV and cover letter as PDF and LaTeX, and optionally Word.
 4. **Track it.** Every saved application is listed with its fit and status, from saved to applied, interview, offer or rejected, together with the job posting it was built from.
@@ -42,12 +42,12 @@ Many employers run every CV through an applicant-tracking system (ATS) before a 
 ## Features
 
 **Before you apply**
-- A fit verdict for every posting, with how many of its essential skills you can prove
+- A fit verdict and match score for every posting, with how many of its essential skills you can prove
 - Compare jobs: paste two to six postings and see them ranked by fit
 - Starter phrases for the cover letter, taken from the posting
 
 **Your CV and letter**
-- Two CV layouts: Classic (up to two pages) and Jake's resume (one page, the layout US and tech recruiters know). Automatic picks Jake's for software roles and US spelling.
+- Two CV layouts: Classic (up to two pages) and Jake's resume (one page, the layout US and tech recruiters know). Automatic picks Jake's for software roles. When a Classic CV runs a few lines onto an extra page, Shortlist tightens the text slightly before cutting anything.
 - UK or US spelling, and a LinkedIn, portfolio or GitHub link in the header, chosen per job
 - A 10-second recruiter check on every CV: clear target, the job's language, outcomes, scale, progression
 - Warnings for bullets with no figure or no stated result, folded into one bar
@@ -61,17 +61,19 @@ Many employers run every CV through an applicant-tracking system (ATS) before a 
 - Reopen any saved application to edit and save it again
 
 **Your master CV**
-- Import from PDF, Word or LaTeX, or start from the blank Word template
+- Import from PDF, Word or LaTeX, build one in the app step by step (dates picked from a calendar), or start from the blank Word template
+- Save your whole master CV as Word and PDF
 - Edit what was imported: roles, dates, bullets (one per line), skills and certifications
 - CV health: a score for how well your master CV feeds Shortlist, with the bullets to strengthen
 
 **Everyday use**
 - Separate zoom for the CV and the cover letter, keyboard shortcuts, light and dark mode
+- Report a bug from the app, with screenshots
 - Recognises the tools and methods of mechanical, civil, electrical, electronic, software, chemical, aerospace and biomedical engineering, about 310 skills in all
 
 ## Privacy
 
-Shortlist works offline. Your profile and settings stay in `%APPDATA%\Shortlist` on your PC, and your documents go to the folder you choose (`Documents\Shortlist` by default). It goes online only if you turn on update checks in Settings, and then it only asks GitHub for the latest version number.
+Shortlist works offline. Your profile and settings stay in `%APPDATA%\Shortlist` on your PC, and your documents go to the folder you choose (`Documents\Shortlist` by default). It goes online only if you turn on update checks in Settings, when it asks GitHub for the latest version number, or when you send a bug report, which contains only what you write in the report window.
 
 ## Credits
 
