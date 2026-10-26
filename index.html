@@ -42,7 +42,8 @@
     a:hover { color: var(--accent-p); }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .wrap { max-width: 1200px; margin: 0 auto; }
-    #top, #how, #privacy, #download { scroll-margin-top: 76px; }
+    /* Menu links stop below the sticky header: --header-h is its measured height (shortlist-theme.js), plus breathing room. */
+    #top, #how, #privacy, #download { scroll-margin-top: calc(var(--header-h, 128px) + 24px); }
 
     /* 1. Header */
     header.top { position: sticky; top: 0; z-index: 10; background: var(--bg); transition: background-color .2s; }

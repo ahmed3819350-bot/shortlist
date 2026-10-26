@@ -7,6 +7,13 @@
   root.dataset.theme = saved === 'dark' ? 'dark' : 'light';
 
   document.addEventListener('DOMContentLoaded', function () {
+    // The sticky header's height changes with the window width; keep --header-h in step so menu links never land under it.
+    var header = document.querySelector('header.top');
+    if (header) {
+      var setH = function () { root.style.setProperty('--header-h', header.offsetHeight + 'px'); };
+      setH();
+      if ('ResizeObserver' in window) new ResizeObserver(setH).observe(header); else addEventListener('resize', setH);
+    }
     var btn = document.getElementById('theme-toggle');
     if (!btn) return;
     var sync = function () {
